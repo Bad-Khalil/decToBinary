@@ -7,7 +7,10 @@ package dec2bin;
 
 import org.evosuite.shaded.org.apache.commons.lang3.ArrayUtils;
 
+import static java.lang.Math.round;
+
 /**
+ * * This class deals with computing decimal numbers to binary numbers.
  *
  * @author michi
  */
@@ -15,13 +18,17 @@ class Calculator {
 
     /**
      * Calculates the binary number
-     * @return
+     *
+     * @return String with calculated binary number
      */
-    String calculate(Integer curr){
+    String calculate(Integer curr) {
 
-        if (curr == null){
+        if (curr == null) {
             return "";
         }
+
+        String result;
+        String bcd;
 
         // binarys array for adding '0' or '1' as individual numbers
         char[] binaries = new char[curr];
@@ -30,7 +37,7 @@ class Calculator {
         byte i = 0;
 
         // run until calculating is finished
-        while (curr != 0){
+        while (curr != 0) {
 
             // If there is a remainder, then add a '1', otherwise a '0'
             binaries[i] = curr % 2 == 0 ? '0' : '1';
@@ -42,10 +49,46 @@ class Calculator {
             i++;
         }
 
+        // Setting BCD
+        bcd = this.showinBcd(i);
+
         // Reverse the array
         ArrayUtils.reverse(binaries);
 
+        // setting result
+        result = String.valueOf(binaries);
+
+        result = result + "\n" + bcd;
+
         // return
-        return String.valueOf(binaries);
+        return result;
+    }
+
+    /**
+     * This method shows the BCD (8421) numbers
+     * @param resultLength - length of binary numbers
+     * @return String with bcd numbers
+     * TODO: need a space when binary is over 8 (1-2-4-8-16..)
+     */
+    private String showinBcd(int resultLength) {
+
+        // init output
+        StringBuilder output = new StringBuilder();
+
+        // got to handle the 1 manually
+        resultLength--;
+
+        // move through result length
+        for (int i = resultLength; i > 0 ; i--) {
+
+            // append 2^i
+            output.append(String.valueOf(round(Math.pow(2, i))));
+        }
+
+        // as i said, we got to handle the 1 manually
+        output.append("1");
+
+        // return output
+        return output.toString();
     }
 }
