@@ -5,8 +5,6 @@
  */
 package dec2bin;
 
-import org.evosuite.shaded.org.apache.commons.lang3.ArrayUtils;
-
 import static java.lang.Math.round;
 
 /**
@@ -27,11 +25,11 @@ class Calculator {
             return "";
         }
 
-        String result;
         String bcd;
 
-        // binarys array for adding '0' or '1' as individual numbers
-        char[] binaries = new char[curr];
+        // array for adding '0' or '1' as individual numbers
+        String formatted = "";
+        String normal = "";
 
         // for running through array
         byte i = 0;
@@ -40,8 +38,16 @@ class Calculator {
         while (curr != 0) {
 
             // If there is a remainder, then add a '1', otherwise a '0'
-            binaries[i] = curr % 2 == 0 ? '0' : '1';
+            formatted += curr % 2 == 0 ? " 0" : " 1";
+            normal += curr % 2 == 0 ? "0" : "1";
 
+            // adding spaces
+            // formula: 2^i
+            // (e.g.) 2^5   = 32  => 2 digits, so add 1 space
+            // 2nd e.g. 2^9 = 512 => 3 digits, so add 2 spaces
+            for (int j = 0; j < String.valueOf(round(Math.pow(2,i))).length() - 1; j++) {
+                formatted += " ";
+            }
             // calculating
             curr = curr / 2;
 
@@ -53,22 +59,23 @@ class Calculator {
         bcd = this.showinBcd(i);
 
         // Reverse the array
-        ArrayUtils.reverse(binaries);
+        formatted = new StringBuffer(formatted).reverse().toString();
+        normal = new StringBuffer(normal).reverse().toString();
 
-        // setting result
-        result = String.valueOf(binaries);
+        normal = "Normal spelling:\n" + normal;
 
-        result = result + "\n" + bcd;
+        // add bcd
+        formatted = "Formatted spelling:\n" + formatted;
+        formatted = formatted + "\n" + bcd;
 
         // return
-        return result;
+        return normal + "\n\n" + formatted;
     }
 
     /**
      * This method shows the BCD (8421) numbers
      * @param resultLength - length of binary numbers
      * @return String with bcd numbers
-     * TODO: need a space when binary is over 8 (1-2-4-8-16..)
      */
     private String showinBcd(int resultLength) {
 
@@ -82,11 +89,11 @@ class Calculator {
         for (int i = resultLength; i > 0 ; i--) {
 
             // append 2^i
-            output.append(String.valueOf(round(Math.pow(2, i))));
+            output.append(String.valueOf(round(Math.pow(2, i)) + "-"));
         }
 
         // as i said, we got to handle the 1 manually
-        output.append("1");
+        output.append("1 ");
 
         // return output
         return output.toString();
