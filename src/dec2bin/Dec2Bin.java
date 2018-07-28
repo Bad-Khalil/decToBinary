@@ -70,5 +70,9 @@ public class Dec2Bin {
 
         // write calculated result
         System.out.println(c.calculate(n));
+
+        // prevent from closing :O
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 }

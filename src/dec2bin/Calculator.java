@@ -72,23 +72,16 @@ class Calculator {
         formatted = new StringBuffer(formatted).reverse().toString();
         normal = new StringBuffer(normal).reverse().toString();
 
-        // if the length is greater than txt, then use length
-        laenge = normal.length() > "Normal spelling:".length() ? normal.length() : "Normal spelling:".length();
-
-        // adding clarity
-        for (int j = 0; j < laenge; j++) {
-            breaks += "-";
-        }
-
-        // adding clarity
-        normal = breaks + "\nNormal spelling:\n" + normal + "\n" + breaks;
+        // calculating clarity
         laenge = bcd.length() > "Formatted spelling:".length() ? bcd.length() : "Formatted spelling:".length();
-        breaks = "";
         for (int j = 0; j < laenge; j++) {
             breaks += "-";
         }
 
-        //  // adding clarity and bcd
+        // adding clarity
+        normal = "Normal spelling:\n" + normal + "\n" + breaks;
+
+        // adding clarity and bcd
         formatted = breaks + "\nFormatted spelling:\n" + formatted;
         formatted = formatted + "\n" + bcd + "\n" + breaks;
 
