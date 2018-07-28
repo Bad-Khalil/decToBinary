@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 package dec2bin;
-
 import static java.lang.Math.round;
 
 /**
- * * This class deals with computing decimal numbers to binary numbers.
+ * This class deals with computing decimal numbers to binary numbers.
  *
  * @author michi
  */
@@ -21,14 +20,25 @@ class Calculator {
      */
     String calculate(Integer curr) {
 
+        // null check
         if (curr == null) {
-            return "";
+            return "Sorry, this number is invalid.";
         }
 
+        // is used for adding clarity ("-")
+        int laenge;
+
+        // is used for adding clarity ("-")
+        String breaks = "";
+
+        // is used for the bcd output
         String bcd;
 
-        // array for adding '0' or '1' as individual numbers
+        // we got 2 output Strings.
+        // formatted eg   1  1 1 0 1 1
         String formatted = "";
+
+        // normal eg 111011
         String normal = "";
 
         // for running through array
@@ -62,14 +72,28 @@ class Calculator {
         formatted = new StringBuffer(formatted).reverse().toString();
         normal = new StringBuffer(normal).reverse().toString();
 
-        normal = "Normal spelling:\n" + normal;
+        // if the length is greater than txt, then use length
+        laenge = normal.length() > "Normal spelling:".length() ? normal.length() : "Normal spelling:".length();
 
-        // add bcd
-        formatted = "Formatted spelling:\n" + formatted;
-        formatted = formatted + "\n" + bcd;
+        // adding clarity
+        for (int j = 0; j < laenge; j++) {
+            breaks += "-";
+        }
+
+        // adding clarity
+        normal = breaks + "\nNormal spelling:\n" + normal + "\n" + breaks;
+        laenge = bcd.length() > "Formatted spelling:".length() ? bcd.length() : "Formatted spelling:".length();
+        breaks = "";
+        for (int j = 0; j < laenge; j++) {
+            breaks += "-";
+        }
+
+        //  // adding clarity and bcd
+        formatted = breaks + "\nFormatted spelling:\n" + formatted;
+        formatted = formatted + "\n" + bcd + "\n" + breaks;
 
         // return
-        return normal + "\n\n" + formatted;
+        return formatted + "\n\n" + normal;
     }
 
     /**
