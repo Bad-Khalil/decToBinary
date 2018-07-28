@@ -93,7 +93,7 @@ class Calculator {
         formatted = formatted + "\n" + bcd + "\n" + breaks;
 
         // return
-        return formatted + "\n\n" + normal;
+        return formatted + "\n" + normal;
     }
 
     /**
