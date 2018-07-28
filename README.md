@@ -19,7 +19,3 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 * **Michael L.** - *Initial work* - (https://github.com/michael-lucas-net)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENCE.md](LICENSE.md) file for details
