@@ -1,5 +1,5 @@
-
 package dec2bin;
+
 import java.util.Scanner;
 
 /**
@@ -7,19 +7,34 @@ import java.util.Scanner;
  */
 public class Dec2Bin {
 
+    private static String version = "1.0.1";
+
     /**
      * This method gets the number from the user
+     *
      * @return int with number
      */
     private static int gettingNumber() {
         Scanner scanner = new Scanner(System.in);
+        String pleaseEnterTxt = "Please enter a positive number that you would like to have converted: ";
+        String input;
 
         int number;
         do {
-            System.out.print("Please enter a positive number that you would like to have converted: ");
+            System.out.print(pleaseEnterTxt);
             while (!scanner.hasNextInt()) {
-                String input = scanner.next();
-                System.out.printf("\"%s\" is not a valid number. Try again:\n", input);
+                input = scanner.next();
+
+                if (input.equals("about")) {
+                    System.out.println("--------------------------------------------------");
+                    System.out.println("This tiny software was made for fun by Michael L.");
+                    System.out.println("Version " + version);
+                    System.out.println("--------------------------------------------------");
+                    System.out.println(pleaseEnterTxt);
+                } else {
+                    System.out.printf("\"%s\" is not a valid number. Try again:\n", input);
+                }
+
             }
             number = scanner.nextInt();
         } while (number < 0);
