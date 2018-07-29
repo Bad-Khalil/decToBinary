@@ -1,6 +1,6 @@
 # dec2Bin
 
-This little program converts your decimal number into a binary number.
+This tiny program converts your decimal number into a binary number.
 And was totally made for fun.
 
 ## Getting Started
