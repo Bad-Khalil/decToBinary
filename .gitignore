@@ -1,3 +1,5 @@
 .idea/
 .evosuite/
-nbproject/private/
+nbproject/
+/dist/
+out/
