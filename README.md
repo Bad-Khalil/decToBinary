@@ -11,6 +11,10 @@ Just start the program and enter your desired number that you want to convert
 
 You need java to get this software running
 
+### How to run the jar-executable
+Run with 
+```java -jar "dec2Bin.jar"```
+
 ## Built With
 
 * [Java]
