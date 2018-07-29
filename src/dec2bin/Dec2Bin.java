@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Dec2Bin {
 
-    private static String version = "1.0.1";
+    private static String version = "1.0.0.36";
 
     /**
      * This method gets the number from the user
