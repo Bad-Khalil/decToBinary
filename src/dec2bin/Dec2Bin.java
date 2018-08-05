@@ -46,10 +46,10 @@ public class Dec2Bin {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // create new calculator
+        // Create new calculator
         Calculator c = new Calculator();
 
-        // for the number
+        // The number
         int n;
 
         // "=" for clarity
@@ -64,24 +64,24 @@ public class Dec2Bin {
         // generate "calculating" - text
         String calcTxt = "Calculating the number " + n + "...";
 
-        // calculate how many "=" we need to fit to text
+        // Calculate how many "=" we need to fit to text
         for (int i = 0; i < calcTxt.length(); i++) {
             breaks += "=";
         }
 
-        // adding "=" for clarity
+        // Adding "=" for clarity
         System.out.println("\n" + breaks);
 
-        // writing calc Text
+        // Writing calc Text
         System.out.println(calcTxt);
 
-        // adding "=" for clarity
+        // Adding "=" for clarity
         System.out.println(breaks);
 
-        // write calculated result
+        // Write calculated result
         System.out.println(c.calculate(n));
 
-        // prevent from closing :O
+        // Prevent from closing :O
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
