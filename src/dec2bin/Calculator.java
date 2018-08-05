@@ -20,23 +20,23 @@ class Calculator {
             return "Sorry, this number is invalid.";
         }
 
-        // is used for adding clarity ("-")
+        // Is used for adding clarity ("-")
         int laenge;
 
-        // is used for adding clarity ("-")
+        // Is used for adding clarity ("-")
         String breaks = "";
 
-        // is used for the bcd output
+        // Is used for the bcd output
         String bcd;
 
-        // we got 2 output Strings.
-        // formatted eg   1  1 1 0 1 1
+        // We got 2 output Strings.
+        // Formatted eg   1  1 1 0 1 1
         String formatted = "";
 
-        // normal eg 111011
+        // Normal eg 111011
         String normal = "";
 
-        // for running through array
+        // For running through array
         byte i = 0;
 
         // run until calculating is finished
@@ -46,41 +46,41 @@ class Calculator {
             formatted += curr % 2 == 0 ? " 0" : " 1";
             normal += curr % 2 == 0 ? "0" : "1";
 
-            // adding spaces
-            // formula: 2^i
+            // Adding spaces
+            // Formula: 2^i
             // (e.g.) 2^5   = 32  => 2 digits, so add 1 space
             // 2nd e.g. 2^9 = 512 => 3 digits, so add 2 spaces
             for (int j = 0; j < String.valueOf(round(Math.pow(2,i))).length() - 1; j++) {
                 formatted += " ";
             }
-            // calculating
+            // Calculating
             curr = curr / 2;
 
-            // setting iterator
+            // Setting iterator
             i++;
         }
 
         // Setting BCD
         bcd = this.showinBcd(i);
 
-        // Reverse the array
+        // Reversing the array
         formatted = new StringBuffer(formatted).reverse().toString();
         normal = new StringBuffer(normal).reverse().toString();
 
-        // calculating clarity
+        // Calculating clarity
         laenge = bcd.length() > "Formatted spelling:".length() ? bcd.length() : "Formatted spelling:".length();
         for (int j = 0; j < laenge; j++) {
             breaks += "-";
         }
 
-        // adding clarity
+        // Adding clarity
         normal = "Normal spelling:\n" + normal + "\n" + breaks;
 
-        // adding clarity and bcd
+        // Adding clarity and bcd
         formatted = breaks + "\nFormatted spelling:\n" + formatted;
         formatted = formatted + "\n" + bcd + "\n" + breaks;
 
-        // return
+        // Return
         return formatted + "\n" + normal;
     }
 
@@ -91,23 +91,23 @@ class Calculator {
      */
     private String showinBcd(int resultLength) {
 
-        // init output
+        // Init output
         StringBuilder output = new StringBuilder();
 
-        // got to handle the 1 manually
+        // Got to handle the 1 manually
         resultLength--;
 
-        // move through result length
+        // Move through result length
         for (int i = resultLength; i > 0 ; i--) {
 
-            // append 2^i
+            // Append 2^i
             output.append(String.valueOf(round(Math.pow(2, i)) + "-"));
         }
 
-        // as i said, we got to handle the 1 manually
+        // As i said, we got to handle the 1 manually
         output.append("1 ");
 
-        // return output
+        // Return output
         return output.toString();
     }
 }
