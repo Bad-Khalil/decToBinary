@@ -24,17 +24,17 @@ class Calculator {
         int laenge;
 
         // Is used for adding clarity ("-")
-        String breaks = "";
+        StringBuilder breaks = new StringBuilder();
 
         // Is used for the bcd output
         String bcd;
 
         // We got 2 output Strings.
         // Formatted eg   1  1 1 0 1 1
-        String formatted = "";
+        StringBuilder formatted = new StringBuilder();
 
         // Normal eg 111011
-        String normal = "";
+        StringBuilder normal = new StringBuilder();
 
         // For running through array
         byte i = 0;
@@ -43,15 +43,15 @@ class Calculator {
         while (curr != 0) {
 
             // If there is a remainder, then add a '1', otherwise a '0'
-            formatted += curr % 2 == 0 ? " 0" : " 1";
-            normal += curr % 2 == 0 ? "0" : "1";
+            formatted.append(curr % 2 == 0 ? " 0" : " 1");
+            normal.append(curr % 2 == 0 ? "0" : "1");
 
             // Adding spaces
             // Formula: 2^i
             // (e.g.) 2^5   = 32  => 2 digits, so add 1 space
             // 2nd e.g. 2^9 = 512 => 3 digits, so add 2 spaces
             for (int j = 0; j < String.valueOf(round(Math.pow(2,i))).length() - 1; j++) {
-                formatted += " ";
+                formatted.append(" ");
             }
             // Calculating
             curr = curr / 2;
@@ -64,21 +64,21 @@ class Calculator {
         bcd = this.showinBcd(i);
 
         // Reversing the array
-        formatted = new StringBuffer(formatted).reverse().toString();
-        normal = new StringBuffer(normal).reverse().toString();
+        formatted = new StringBuilder(new StringBuffer(formatted.toString()).reverse().toString());
+        normal = new StringBuilder(new StringBuffer(normal.toString()).reverse().toString());
 
         // Calculating clarity
         laenge = bcd.length() > "Formatted spelling:".length() ? bcd.length() : "Formatted spelling:".length();
         for (int j = 0; j < laenge; j++) {
-            breaks += "-";
+            breaks.append("-");
         }
 
         // Adding clarity
-        normal = "Normal spelling:\n" + normal + "\n" + breaks;
+        normal = new StringBuilder("Normal spelling:\n" + normal + "\n" + breaks);
 
         // Adding clarity and bcd
-        formatted = breaks + "\nFormatted spelling:\n" + formatted;
-        formatted = formatted + "\n" + bcd + "\n" + breaks;
+        formatted.insert(0, breaks + "\nFormatted spelling:\n");
+        formatted.append("\n").append(bcd).append("\n").append(breaks);
 
         // Return
         return formatted + "\n" + normal;

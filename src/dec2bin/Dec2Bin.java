@@ -7,7 +7,7 @@ import java.util.Scanner;
  */
 public class Dec2Bin {
 
-    private static String version = "1.0.0.36";
+    private static final String version = "1.0.1.57";
 
     /**
      * This method gets the number from the user
@@ -25,14 +25,26 @@ public class Dec2Bin {
             while (!scanner.hasNextInt()) {
                 input = scanner.next();
 
-                if (input.equals("about")) {
-                    System.out.println("--------------------------------------------------");
-                    System.out.println("This tiny software was made for fun by Michael L.");
-                    System.out.println("Version " + version);
-                    System.out.println("--------------------------------------------------");
-                    System.out.println(pleaseEnterTxt);
-                } else {
-                    System.out.printf("\"%s\" is not a valid number. Try again:\n", input);
+                switch (input) {
+                    case "about":
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("This tiny software was made for fun by Michael L.");
+                        System.out.println("Version " + version);
+                        System.out.println("For changelog: write 'changelog'");
+                        System.out.println("--------------------------------------------------");
+                        System.out.println(pleaseEnterTxt);
+                        break;
+                    case "changelog":
+                        System.out.println("--------------------------------------------------");
+                        System.out.println("New in Version " + version + ":");
+                        System.out.println("- added changelog");
+                        System.out.println("- added possibility to convert several numbers one after the other.");
+                        System.out.println("--------------------------------------------------");
+                        System.out.println(pleaseEnterTxt);
+                        break;
+                    default:
+                        System.out.printf("\"%s\" is not a valid number. Try again:\n", input);
+                        break;
                 }
 
             }
@@ -46,6 +58,18 @@ public class Dec2Bin {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        // Welcome
+        System.out.println("Welcome to dec2Bin");
+
+        // about
+        System.out.println("For information about this software, write 'about'.");
+
+
+        // Start procedure
+        start();
+    }
+
+    private static void start() {
         // Create new calculator
         Calculator c = new Calculator();
 
@@ -54,10 +78,6 @@ public class Dec2Bin {
 
         // "=" for clarity
         String breaks = "";
-
-        // Welcome
-        System.out.println("Welcome to dec2Bin");
-
         // Get the number
         n = gettingNumber();
 
@@ -81,8 +101,7 @@ public class Dec2Bin {
         // Write calculated result
         System.out.println(c.calculate(n));
 
-        // Prevent from closing :O
-        Scanner scanner = new Scanner(System.in);
-        scanner.nextLine();
+        // Rerun
+        start();
     }
 }
