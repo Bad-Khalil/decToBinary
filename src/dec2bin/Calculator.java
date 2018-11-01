@@ -15,7 +15,7 @@ class Calculator {
      */
     String calculate(Integer curr) {
 
-        // null check
+        // NULL check
         if (curr == null) {
             return "Sorry, this number is invalid.";
         }
@@ -29,7 +29,7 @@ class Calculator {
         // Is used for the bcd output
         String bcd;
 
-        // We got 2 output Strings.
+        // 2 output Strings.
         // Formatted eg   1  1 1 0 1 1
         StringBuilder formatted = new StringBuilder();
 
@@ -39,7 +39,7 @@ class Calculator {
         // For running through array
         byte i = 0;
 
-        // run until calculating is finished
+        // Run until calculating is finished
         while (curr != 0) {
 
             // If there is a remainder, then add a '1', otherwise a '0'
@@ -99,12 +99,11 @@ class Calculator {
 
         // Move through result length
         for (int i = resultLength; i > 0 ; i--) {
-
             // Append 2^i
             output.append(String.valueOf(round(Math.pow(2, i)) + "-"));
         }
 
-        // As i said, we got to handle the 1 manually
+        // Handle the 1 manually
         output.append("1 ");
 
         // Return output
