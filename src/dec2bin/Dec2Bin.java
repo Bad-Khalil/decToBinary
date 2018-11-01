@@ -46,8 +46,8 @@ public class Dec2Bin {
                         System.out.printf("\"%s\" is not a valid number. Try again:\n", input);
                         break;
                 }
-
             }
+            
             number = scanner.nextInt();
         } while (number < 0);
 
@@ -64,7 +64,6 @@ public class Dec2Bin {
         // about
         System.out.println("For information about this software, write 'about'.");
 
-
         // Start procedure
         start();
     }
@@ -78,6 +77,7 @@ public class Dec2Bin {
 
         // "=" for clarity
         String breaks = "";
+        
         // Get the number
         n = gettingNumber();
 
