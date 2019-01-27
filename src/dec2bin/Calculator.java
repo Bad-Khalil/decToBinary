@@ -10,7 +10,7 @@ import static java.lang.Math.round;
 class Calculator {
 
     /**
-     * Calculates the binary number
+     * Calculates the binary number.
      *
      * @return String with calculated binary number
      */
@@ -49,7 +49,7 @@ class Calculator {
                 formatted.append(" ");
             }
 
-            number = number / 2;
+            number /= 2;
             i++;
         }
 
@@ -60,7 +60,10 @@ class Calculator {
         normal = reverse(normal.toString());
 
         // Calculating clarity
-        length = bcd.length() > "Formatted spelling:".length() ? bcd.length() : "Formatted spelling:".length();
+        length = bcd.length() > "Formatted spelling:".length()
+                ? bcd.length()
+                : "Formatted spelling:".length();
+
         for (int j = 0; j < length; j++) {
             breaks.append("-");
         }
@@ -82,6 +85,7 @@ class Calculator {
      * @return - The reversed string
      */
     private StringBuilder reverse(String toReverse) {
+        assert toReverse != null;
         return new StringBuilder(new StringBuffer(toReverse).reverse().toString());
     }
 
@@ -92,7 +96,7 @@ class Calculator {
      * @return String with bcd numbers
      */
     private String showinBcd(int resultLength) {
-
+        assert resultLength >= 0;
         StringBuilder output = new StringBuilder();
 
         // Got to handle the 1 manually
