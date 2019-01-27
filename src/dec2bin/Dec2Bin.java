@@ -7,17 +7,28 @@ import java.util.Scanner;
  */
 public class Dec2Bin {
 
-    private static final String version = "1.0.1.57";
+    private static final String version = "1.0.1.59";
 
     /**
-     * This method gets the number from the user
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        System.out.println("Welcome to dec2Bin");
+        System.out.println("For information about this software, write 'about'.");
+        run();
+    }
+
+    /**
+     * This method lets the user enter numbers to use them in "run".
+     * It also checks if valid numbers have been entered.
      *
      * @return int with number
      */
     private static int gettingNumber() {
         Scanner scanner = new Scanner(System.in);
-        String pleaseEnterTxt = "Please enter a positive number that you would like to have converted: ";
-        String input;
+        String
+                pleaseEnterTxt = "Please enter a positive number that you would like to have converted: ",
+                input;
 
         int number;
         do {
@@ -37,8 +48,7 @@ public class Dec2Bin {
                     case "changelog":
                         System.out.println("--------------------------------------------------");
                         System.out.println("New in Version " + version + ":");
-                        System.out.println("- added changelog");
-                        System.out.println("- added possibility to convert several numbers one after the other.");
+                        System.out.println("- improved Code");
                         System.out.println("--------------------------------------------------");
                         System.out.println(pleaseEnterTxt);
                         break;
@@ -47,61 +57,41 @@ public class Dec2Bin {
                         break;
                 }
             }
-            
+
             number = scanner.nextInt();
         } while (number < 0);
 
         return number;
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // Welcome
-        System.out.println("Welcome to dec2Bin");
+    private static void run() {
+        Calculator
+                calc = new Calculator();
 
-        // about
-        System.out.println("For information about this software, write 'about'.");
+        int
+                number = gettingNumber();
 
-        // Start procedure
-        start();
-    }
+        StringBuilder
+                breaks = new StringBuilder();
+        String
+                calcTxt = "Calculating the number " + number + "...";
 
-    private static void start() {
-        // Create new calculator
-        Calculator c = new Calculator();
-
-        // The number
-        int n;
-
-        // "=" for clarity
-        String breaks = "";
-        
-        // Get the number
-        n = gettingNumber();
-
-        // generate "calculating" - text
-        String calcTxt = "Calculating the number " + n + "...";
-
-        // Calculate how many "=" we need to fit to text
+        // Calculate how many "=" we need to fit the text
         for (int i = 0; i < calcTxt.length(); i++) {
-            breaks += "=";
+            breaks.append("=");
         }
 
         // Adding "=" for clarity
         System.out.println("\n" + breaks);
-
-        // Writing calc Text
         System.out.println(calcTxt);
 
         // Adding "=" for clarity
         System.out.println(breaks);
 
         // Write calculated result
-        System.out.println(c.calculate(n));
+        System.out.println(calc.calculate(number));
 
         // Rerun
-        start();
+        run();
     }
 }

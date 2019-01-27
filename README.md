@@ -5,7 +5,8 @@ And was totally made for fun.
 
 ## Getting Started
 
-Just start the program and enter your desired number that you want to convert
+Start the program and follow the instructions on the screen.
+Basically, you must enter an integer positive number, which will then be converted to a binary number.
 
 ### Prerequisites
 
